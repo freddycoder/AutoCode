@@ -41,19 +41,19 @@ jobs:
       - name: Connect to nuget.org
         run: |
           cd AutoCodeComment
-          nuget SetApiKey ${{ secrets.NUGETAPIKEY }} -Source $NUGETSOURCE
+          nuget SetApiKey ${{ secrets.NUGETAPIKEY }} --source $NUGETSOURCE
 
       - name: Add alpha tag
         if: ${{ github.ref != 'refs/heads/main' }}
         run: echo "$VERSION-$GITHUB_RUN_NUMBER" >> $VERSION
         
       - name: Pack nuget
-        run: nuget pack -OutputDirectory ..\Packages -Properties Configuration=Release;version=$VERSION
+        run: nuget pack -OutputDirectory ..\Packages --properties Configuration=Release;version=$VERSION
         
       - name: Publish alpha
         if: ${{ github.ref != 'refs/heads/main' }}
-        run: nuget push ..\Packages\TeamVelocity.AutoCode -src $NUGETSOURCE
+        run: nuget push ..\Packages\TeamVelocity.AutoCode --source $NUGETSOURCE
         
       - name: Publish finale
         if: ${{ github.ref == 'refs/heads/main' }}
-        run: nuget push ..\Packages\TeamVelocity.AutoCode -src $NUGETSOURCE
+        run: nuget push ..\Packages\TeamVelocity.AutoCode --source $NUGETSOURCE
