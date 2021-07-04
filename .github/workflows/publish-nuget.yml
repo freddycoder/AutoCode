@@ -15,8 +15,7 @@ on:
 
 env:
   NUGETSOURCE: "https://api.nuget.org/v3/index.json"
-  VERSIONBASE: 1.0.0
-  VERSION: $VERSIONBASE
+  VERSION: 1.0.0
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -46,7 +45,7 @@ jobs:
 
       - name: Add alpha tag
         if: ${{ github.ref != 'refs/heads/main' }}
-        run: echo "$VERSIONBASE-$GITHUB_RUN_NUMBER" >> $VERSION
+        run: echo "$VERSION-$GITHUB_RUN_NUMBER" >> $VERSION
         
       - name: Pack nuget
         run: nuget pack -OutputDirectory ..\Packages -Properties Configuration=Release;version=$VERSION
