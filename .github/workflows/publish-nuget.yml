@@ -40,7 +40,7 @@ jobs:
 
       - name: Create alpha tag
         if: ${{ github.ref != 'refs/heads/main' }}
-        run: echo "$VERSION-$GITHUB_RUN_NUMBER" >> $VERSION
+        run: echo '::set-output name=VERSION::$VERSION-$GITHUB_RUN_NUMBER'
 
       - name: Print version
         run: echo $VERSION
