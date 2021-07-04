@@ -44,7 +44,7 @@ jobs:
         with:
           PROJECT_FILE_PATH: AutoCodeComment/AutoCodeComment.csproj
           NUGET_KEY: ${{ secrets.NUGETAPIKEY }}
-          NUGET_SOURCE: $NUGETSOURCE
+          NUGET_SOURCE: ${{ env.NUGETSOURCE }}
           VERSION_STATIC: ${{ env.VERSION }}-${{ env.GITHUB_RUN_NUMBER }}
           INCLUDE_SYMBOLS: true
 
@@ -54,6 +54,6 @@ jobs:
         with:
           PROJECT_FILE_PATH: AutoCodeComment/AutoCodeComment.csproj
           NUGET_KEY: ${{ secrets.NUGETAPIKEY }}
-          NUGET_SOURCE: $NUGETSOURCE
-          VERSION_STATIC: $VERSION
+          NUGET_SOURCE: ${{ env.NUGETSOURCE }}
+          VERSION_STATIC: ${{ env.VERSION }}
           INCLUDE_SYMBOLS: true
