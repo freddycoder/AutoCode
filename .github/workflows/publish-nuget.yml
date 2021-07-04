@@ -39,8 +39,11 @@ jobs:
         run: dotnet test
 
       - name: Create alpha tag
-        if: ${{ github.ref == 'refs/heads/main' }}
+        if: ${{ github.ref != 'refs/heads/main' }}
         run: echo "$VERSION-$GITHUB_RUN_NUMBER" >> $VERSION
+
+      - name: Print version
+        run: echo $VERSION
 
       - name: Publish AutoCode to Nuget.Org
         if: success() && github.ref == 'refs/heads/master'
