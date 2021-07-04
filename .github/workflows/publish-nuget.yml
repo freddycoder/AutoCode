@@ -45,7 +45,7 @@ jobs:
           PROJECT_FILE_PATH: AutoCodeComment/AutoCodeComment.csproj
           NUGET_KEY: ${{ secrets.NUGETAPIKEY }}
           NUGET_SOURCE: $NUGETSOURCE
-          VERSION_STATIC: ${{ env.VERSION }}-$GITHUB_RUN_NUMBER
+          VERSION_STATIC: ${{ env.VERSION }}-${{ env.GITHUB_RUN_NUMBER }}
           INCLUDE_SYMBOLS: true
 
       - name: Publish AutoCode to Nuget.Org
