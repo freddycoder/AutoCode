@@ -16,6 +16,7 @@ on:
 env:
   NUGETSOURCE: "https://api.nuget.org/v3/index.json"
   VERSIONBASE: 1.0.0
+  VERSION: $VERSIONBASE
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -41,12 +42,14 @@ jobs:
       - name: Connect to nuget.org
         run: |
           cd AutoCodeComment
-          nuget SetApiKey {{ secrets.NUGETAPIKEY }} -Source $NUGETSOURCE
+          nuget SetApiKey ${{ secrets.NUGETAPIKEY }} -Source $NUGETSOURCE
+
+      - name: Add alpha tag
+        if: ${{ github.ref != 'refs/heads/main' }}
+        run: echo "$VERSIONBASE-$GITHUB_RUN_NUMBER" >> $VERSION
         
       - name: Pack nuget
-        run: |
-          echo "$VERSIONBASE-$GITHUB_RUN_NUMBER" >> $VERSION
-          nuget pack -OutputDirectory ..\Packages -Properties Configuration=Release;version=$VERSION
+        run: nuget pack -OutputDirectory ..\Packages -Properties Configuration=Release;version=$VERSION
         
       - name: Publish alpha
         if: ${{ github.ref != 'refs/heads/main' }}
