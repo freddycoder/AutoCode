@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Xunit;
 
-namespace AutoCodeComment.Test
+namespace AutoCode.Test
 {
     public class UseCase04_ClassSignalRHubWithMissingComment
     {

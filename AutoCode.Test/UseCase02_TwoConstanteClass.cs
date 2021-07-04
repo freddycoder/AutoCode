@@ -2,14 +2,14 @@ using System.IO;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace AutoCodeComment.Test
+namespace AutoCode.Test
 {
-    public class UseCase03_ClassWithMissingComment
+    public class UseCase02_TwoConstanteClass
     {
         [Fact]
         public async Task AddCommentToFile()
         {
-            var constance_dot_cs = Path.Combine("CodeExample", "UseCase03.cs");
+            var constance_dot_cs = Path.Combine("CodeExample", "UseCase02.cs");
 
             Automaticly.Add.Comment.To.File(constance_dot_cs);
 
@@ -21,7 +21,7 @@ namespace AutoCodeComment.Test
         [Fact]
         public async Task AddCommentToCode()
         {
-            var constance_dot_cs = Path.Combine("CodeExample", "UseCase03.cs");
+            var constance_dot_cs = Path.Combine("CodeExample", "UseCase02.cs");
 
             var result = Automaticly.Add.Comment.To.Code(await File.ReadAllTextAsync(constance_dot_cs));
 
@@ -35,12 +35,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutoCodeComment.Test.CodeExample
+namespace AutoCode.Test.CodeExample
 {
     public class A
     {
         /// <summary>
-        /// The constante A (ConstanteA)
+        /// A constante with the value ConstanteA
         /// </summary>
         public const string ConstanteA = ""ConstanteA"";
 
@@ -50,7 +50,7 @@ namespace AutoCodeComment.Test.CodeExample
         public const string CodeFormat = ""yyy-aaa"";
 
         /// <summary>
-        /// My prefered date format
+        /// A constante with the value yyyy-mm-dd
         /// </summary>
         public const string DateFormat = ""yyyy-mm-dd"";
     }
@@ -68,7 +68,7 @@ namespace AutoCodeComment.Test.CodeExample
         public const string ValueTwo = ""2"";
 
         /// <summary>
-        /// The number three
+        /// A constante with the value 3
         /// </summary>
         public const string Value3 = 3;
     }

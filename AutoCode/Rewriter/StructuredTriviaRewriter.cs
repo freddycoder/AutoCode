@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AutoCodeComment.Rewriter
+namespace AutoCode.Rewriter
 {
     public class StructuredTriviaRewriter : CSharpSyntaxRewriter
     {

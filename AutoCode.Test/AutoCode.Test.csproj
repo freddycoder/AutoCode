@@ -42,7 +42,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AutoCodeComment\AutoCodeComment.csproj" />
+    <ProjectReference Include="..\AutoCode\AutoCode.csproj" />
   </ItemGroup>
 
 </Project>

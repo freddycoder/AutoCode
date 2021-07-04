@@ -1,10 +1,10 @@
-﻿using AutoCodeComment.Rewriter;
+﻿using AutoCode.Rewriter;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using System;
 using System.IO;
 
-namespace AutoCodeComment
+namespace AutoCode
 {
     public class Comment
     {

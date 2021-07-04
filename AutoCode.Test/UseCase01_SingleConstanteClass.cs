@@ -2,14 +2,14 @@ using System.IO;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace AutoCodeComment.Test
+namespace AutoCode.Test
 {
-    public class UseCase02_TwoConstanteClass
+    public class UseCase01_SingleConstanteClass
     {
         [Fact]
         public async Task AddCommentToFile()
         {
-            var constance_dot_cs = Path.Combine("CodeExample", "UseCase02.cs");
+            var constance_dot_cs = Path.Combine("CodeExample", "UseCase01.cs");
 
             Automaticly.Add.Comment.To.File(constance_dot_cs);
 
@@ -21,7 +21,7 @@ namespace AutoCodeComment.Test
         [Fact]
         public async Task AddCommentToCode()
         {
-            var constance_dot_cs = Path.Combine("CodeExample", "UseCase02.cs");
+            var constance_dot_cs = Path.Combine("CodeExample", "UseCase01.cs");
 
             var result = Automaticly.Add.Comment.To.Code(await File.ReadAllTextAsync(constance_dot_cs));
 
@@ -31,13 +31,14 @@ namespace AutoCodeComment.Test
         private const string Expected =
 @"using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutoCodeComment.Test.CodeExample
+namespace AutoCode.Test.CodeExample
 {
-    public class A
+    public class Constante
     {
         /// <summary>
         /// A constante with the value ConstanteA
@@ -53,24 +54,6 @@ namespace AutoCodeComment.Test.CodeExample
         /// A constante with the value yyyy-mm-dd
         /// </summary>
         public const string DateFormat = ""yyyy-mm-dd"";
-    }
-
-    public class B
-    {
-        /// <summary>
-        /// A constante with the value 1
-        /// </summary>
-        public const string ValueOne = ""1"";
-
-        /// <summary>
-        /// A constante with the value 2
-        /// </summary>
-        public const string ValueTwo = ""2"";
-
-        /// <summary>
-        /// A constante with the value 3
-        /// </summary>
-        public const string Value3 = 3;
     }
 }
 ";
