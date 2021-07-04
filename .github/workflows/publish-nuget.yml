@@ -38,12 +38,15 @@ jobs:
       - name: Test
         run: dotnet test
 
-      - name: Create alpha tag
-        if: ${{ github.ref != 'refs/heads/main' }}
-        run: echo '::set-output name=VERSION::$VERSION-$GITHUB_RUN_NUMBER'
-
-      - name: Print version
-        run: echo $VERSION
+      - name: Publish AutoCode Alpha to Nuget.Org
+        if: success() && github.ref != 'refs/heads/master'
+        uses: brandedoutcast/publish-nuget@v2.5.5
+        with:
+          PROJECT_FILE_PATH: AutoCodeComment/AutoCodeComment.csproj
+          NUGET_KEY: ${{ secrets.NUGETAPIKEY }}
+          NUGET_SOURCE: $NUGETSOURCE
+          VERSION_STATIC: $VERSION-$GITHUB_RUN_NUMBER
+          INCLUDE_SYMBOLS: true
 
       - name: Publish AutoCode to Nuget.Org
         if: success() && github.ref == 'refs/heads/master'
