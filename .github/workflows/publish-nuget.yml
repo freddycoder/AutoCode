@@ -37,23 +37,17 @@ jobs:
 
       - name: Test
         run: dotnet test
-      
-      - name: Connect to nuget.org
-        run: |
-          cd AutoCodeComment
-          nuget SetApiKey ${{ secrets.NUGETAPIKEY }} -s $NUGETSOURCE
 
-      - name: Add alpha tag
-        if: ${{ github.ref != 'refs/heads/main' }}
-        run: echo "$VERSION-$GITHUB_RUN_NUMBER" >> $VERSION
-        
-      - name: Pack nuget
-        run: nuget pack -OutputDirectory ..\Packages --properties Configuration=Release;version=$VERSION
-        
-      - name: Publish alpha
-        if: ${{ github.ref != 'refs/heads/main' }}
-        run: nuget push ..\Packages\TeamVelocity.AutoCode -s $NUGETSOURCE
-        
-      - name: Publish finale
+      - name: Create alpha tag
         if: ${{ github.ref == 'refs/heads/main' }}
-        run: nuget push ..\Packages\TeamVelocity.AutoCode -s $NUGETSOURCE
+        run: echo "$VERSION-$GITHUB_RUN_NUMBER" >> $VERSION
+
+      - name: Publish AutoCode to Nuget.Org
+        if: success() && github.ref == 'refs/heads/master'
+        uses: brandedoutcast/publish-nuget@v2.5.5
+        with:
+          PROJECT_FILE_PATH: AutoCodeComment/AutoCodeComment.csproj
+          NUGET_KEY: ${{ secrets.NUGETAPIKEY }}
+          NUGET_SOURCE: $NUGETSOURCE
+          VERSION_STATIC: $VERSION
+          INCLUDE_SYMBOLS: true
