@@ -5,13 +5,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AutoCode.Rewriter
+namespace AutoCode.Rewriter.Comment
 {
-    public class StructuredTriviaRewriter : CSharpSyntaxRewriter
+    public class ConstanteFieldTriviaRewriter : CSharpSyntaxRewriter
     {
-        public StructuredTriviaRewriter(string commentXml) : base(visitIntoStructuredTrivia: true)
+        public ConstanteFieldTriviaRewriter(string commentTemplate) : base(visitIntoStructuredTrivia: true)
         {
-            CommentXml = commentXml;
+            CommentTemplate = commentTemplate;
         }
 
         public override SyntaxNode? VisitFieldDeclaration(FieldDeclarationSyntax node)
@@ -53,7 +53,7 @@ namespace AutoCode.Rewriter
 
         private string GenerateCommentFor(FieldDeclarationSyntax node)
         {
-            return string.Format(CommentXml, 
+            return string.Format(CommentTemplate, 
                                  ParseValue(node.Declaration.Variables.ToString()), 
                                  node.GetLeadingTrivia());
         }
@@ -63,7 +63,7 @@ namespace AutoCode.Rewriter
             return value?.ToString()?.Split('=').LastOrDefault()?.Replace("\"", "").Replace(" ", "");
         }
 
-        public string CommentXml { get; set; }
+        public string CommentTemplate { get; set; }
 
         private static readonly string TrailingTriviaTemplate = $"{Environment.NewLine}";
 

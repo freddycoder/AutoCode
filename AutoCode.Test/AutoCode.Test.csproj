@@ -11,10 +11,18 @@
     <Compile Remove="CodeExample\UseCase02.cs" />
     <Compile Remove="CodeExample\UseCase03.cs" />
     <Compile Remove="CodeExample\UseCase04.cs" />
+    <Compile Remove="CodeExample\UseCase05.cs" />
+    <Compile Remove="CodeExample\UseCase06.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="CodeExample\UseCase01.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="CodeExample\UseCase06.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="CodeExample\UseCase05.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="CodeExample\UseCase04.cs">

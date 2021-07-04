@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace AutoCode
 {
@@ -21,7 +22,14 @@ namespace AutoCode
             {
                 foreach (var file in Directory.GetFiles(path, "*.cs", SearchOption.AllDirectories))
                 {
-                    _comment.Apply(new FileInfo(file));
+                    try
+                    {
+                        _comment.Apply(new FileInfo(file));
+                    }
+                    catch (Exception e)
+                    {
+                        throw new InvalidDataException($"Error applying comment to file '{file}'", e);
+                    }
                 }
             }
         }
