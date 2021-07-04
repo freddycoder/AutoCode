@@ -16,6 +16,7 @@ on:
 env:
   NUGETSOURCE: "https://api.nuget.org"
   VERSION: 1.0.0
+  PROJECTPATH: AutoCode/AutoCode.csproj
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -42,7 +43,7 @@ jobs:
         if: success() && github.ref != 'refs/heads/master'
         uses: brandedoutcast/publish-nuget@v2.5.5
         with:
-          PROJECT_FILE_PATH: AutoCodeComment/AutoCodeComment.csproj
+          PROJECT_FILE_PATH: ${{ env.PROJECTPATH }}
           NUGET_KEY: ${{ secrets.NUGETAPIKEY }}
           NUGET_SOURCE: ${{ env.NUGETSOURCE }}
           VERSION_STATIC: ${{ env.VERSION }}-${{ github.run_number }}
@@ -52,7 +53,7 @@ jobs:
         if: success() && github.ref == 'refs/heads/master'
         uses: brandedoutcast/publish-nuget@v2.5.5
         with:
-          PROJECT_FILE_PATH: AutoCodeComment/AutoCodeComment.csproj
+          PROJECT_FILE_PATH: ${{ env.PROJECTPATH }}
           NUGET_KEY: ${{ secrets.NUGETAPIKEY }}
           NUGET_SOURCE: ${{ env.NUGETSOURCE }}
           VERSION_STATIC: ${{ env.VERSION }}
