@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoCodeComment", "AutoCodeComment\AutoCodeComment.csproj", "{862DC2C6-3F1B-42DF-B1C0-04DC3414A9C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoCodeComment.Test", "AutoCodeComment.Test\AutoCodeComment.Test.csproj", "{35E687E4-FCF0-4FA7-9D7F-ED076188503F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{862DC2C6-3F1B-42DF-B1C0-04DC3414A9C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{862DC2C6-3F1B-42DF-B1C0-04DC3414A9C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{862DC2C6-3F1B-42DF-B1C0-04DC3414A9C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{862DC2C6-3F1B-42DF-B1C0-04DC3414A9C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35E687E4-FCF0-4FA7-9D7F-ED076188503F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35E687E4-FCF0-4FA7-9D7F-ED076188503F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35E687E4-FCF0-4FA7-9D7F-ED076188503F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35E687E4-FCF0-4FA7-9D7F-ED076188503F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AB0DD2A9-6327-4AEF-981F-D4EEFA900011}
+	EndGlobalSection
+EndGlobal
