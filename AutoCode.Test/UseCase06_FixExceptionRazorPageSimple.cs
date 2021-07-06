@@ -49,7 +49,7 @@ namespace AzureDevOpsTeamMembersVelocity.Areas.Identity.Pages.Account
         private readonly SignInManager<IdentityUser> _signInManager;
 
         /// <summary>
-        /// Constructors with dependencies
+        /// Constructor with dependencies
         /// </summary>
         public ConfirmEmailChangeModel(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
         {

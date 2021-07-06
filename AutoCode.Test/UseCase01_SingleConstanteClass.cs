@@ -41,9 +41,9 @@ namespace AutoCode.Test.CodeExample
     public class Constante
     {
         /// <summary>
-        /// A constante with the value ConstanteA
+        /// A constante with the value Constante A
         /// </summary>
-        public const string ConstanteA = ""ConstanteA"";
+        public const string ConstanteA = ""Constante A"";
 
         /// <summary>
         /// A constante with the value yyy-aaa

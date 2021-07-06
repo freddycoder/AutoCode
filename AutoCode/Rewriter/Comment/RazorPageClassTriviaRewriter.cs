@@ -48,6 +48,15 @@ namespace AutoCode.Rewriter.Comment
 
         private IEnumerable<SyntaxTrivia>? GetLeadingTrivia(ConstructorDeclarationSyntax node)
         {
+            if (node.Parent is ClassDeclarationSyntax classDeclaration &&
+                classDeclaration.Members.First() != node)
+            {
+                foreach (var trivia in EndlineTrivia)
+                {
+                    yield return trivia;
+                }
+            }
+
             var comment = CSharpSyntaxTree.ParseText(string.Format(ConstructorCommentTemplate, "", node.GetLeadingTrivia().Last())).GetRoot();
 
             var trivias = comment.DescendantTrivia();
@@ -57,10 +66,7 @@ namespace AutoCode.Rewriter.Comment
                 yield return trivia;
             };
 
-            foreach (var trivia in node.GetLeadingTrivia())
-            {
-                yield return trivia;
-            }
+            yield return node.GetLeadingTrivia().Last();
         }
 
         private IEnumerable<SyntaxTrivia> GetLeadingTrivia(ClassDeclarationSyntax node)

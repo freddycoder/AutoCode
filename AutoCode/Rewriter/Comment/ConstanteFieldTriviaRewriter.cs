@@ -60,7 +60,7 @@ namespace AutoCode.Rewriter.Comment
 
         private static string? ParseValue(object? value)
         {
-            return value?.ToString()?.Split('=').LastOrDefault()?.Replace("\"", "").Replace(" ", "");
+            return value?.ToString()?.Split('=').LastOrDefault()?.Replace("\"", "").Trim();
         }
 
         public string CommentTemplate { get; set; }

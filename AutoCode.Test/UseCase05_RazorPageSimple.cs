@@ -63,9 +63,6 @@ namespace AzureDevOpsTeamMembersVelocity.Areas.Identity.Pages.Account.Manage
             _logger = logger;
         }
 
-        /// <summary>
-        /// Append on GET of the change password page
-        /// </summary>
         public void OnGet()
         {
 
