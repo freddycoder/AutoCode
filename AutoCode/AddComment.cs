@@ -1,4 +1,4 @@
-﻿namespace AutoCodeComment
+﻿namespace AutoCode
 {
     public class AddComment
     {

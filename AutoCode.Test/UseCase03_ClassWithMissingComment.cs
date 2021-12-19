@@ -2,14 +2,14 @@ using System.IO;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace AutoCodeComment.Test
+namespace AutoCode.Test
 {
-    public class UseCase01_SingleConstanteClass
+    public class UseCase03_ClassWithMissingComment
     {
         [Fact]
         public async Task AddCommentToFile()
         {
-            var constance_dot_cs = Path.Combine("CodeExample", "UseCase01.cs");
+            var constance_dot_cs = Path.Combine("CodeExample", "UseCase03.cs");
 
             Automaticly.Add.Comment.To.File(constance_dot_cs);
 
@@ -21,7 +21,7 @@ namespace AutoCodeComment.Test
         [Fact]
         public async Task AddCommentToCode()
         {
-            var constance_dot_cs = Path.Combine("CodeExample", "UseCase01.cs");
+            var constance_dot_cs = Path.Combine("CodeExample", "UseCase03.cs");
 
             var result = Automaticly.Add.Comment.To.Code(await File.ReadAllTextAsync(constance_dot_cs));
 
@@ -31,17 +31,16 @@ namespace AutoCodeComment.Test
         private const string Expected =
 @"using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutoCodeComment.Test.CodeExample
+namespace AutoCode.Test.CodeExample
 {
-    public class Constante
+    public class A
     {
         /// <summary>
-        /// A constante with the value ConstanteA
+        /// The constante A (ConstanteA)
         /// </summary>
         public const string ConstanteA = ""ConstanteA"";
 
@@ -51,9 +50,27 @@ namespace AutoCodeComment.Test.CodeExample
         public const string CodeFormat = ""yyy-aaa"";
 
         /// <summary>
-        /// A constante with the value yyyy-mm-dd
+        /// My prefered date format
         /// </summary>
         public const string DateFormat = ""yyyy-mm-dd"";
+    }
+
+    public class B
+    {
+        /// <summary>
+        /// A constante with the value 1
+        /// </summary>
+        public const string ValueOne = ""1"";
+
+        /// <summary>
+        /// A constante with the value 2
+        /// </summary>
+        public const string ValueTwo = ""2"";
+
+        /// <summary>
+        /// The number three
+        /// </summary>
+        public const string Value3 = 3;
     }
 }
 ";

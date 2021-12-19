@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutoCodeComment.Test.CodeExample
+namespace AutoCode.Test.CodeExample
 {
     public class A
     {

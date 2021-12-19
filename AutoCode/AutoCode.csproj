@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <Nullable>enable</Nullable>
+    <!--<DocumentationFile>Documentation.xml</DocumentationFile>-->
+
+    <Version>1.1.0</Version>
+    <Description>
+      A package that contains functions to automaticly apply code fix to c# source code.
+      Function availlable:
+      - Add comment to source code
+    </Description>
+    <Authors>Frédéric Jacques</Authors>
+    <Copyright>2021</Copyright>
+    <PackageProjectUrl>https://github.com/freddycoder/AutoCode</PackageProjectUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis" Version="4.0.1" />
+  </ItemGroup>
+
+</Project>

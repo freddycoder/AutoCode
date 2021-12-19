@@ -14,8 +14,9 @@ on:
   workflow_dispatch:
 
 env:
-  NUGETSOURCE: "https://api.nuget.org/v3/index.json"
-  VERSION: 1.0.0
+  NUGETSOURCE: "https://api.nuget.org"
+  VERSION: 1.1.0
+  PROJECTPATH: AutoCode/AutoCode.csproj
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -29,6 +30,11 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
+
       - name: Restore dependecies
         run: dotnet restore
         
@@ -37,23 +43,14 @@ jobs:
 
       - name: Test
         run: dotnet test
-      
-      - name: Connect to nuget.org
-        run: |
-          cd AutoCodeComment
-          nuget SetApiKey ${{ secrets.NUGETAPIKEY }} -Source $NUGETSOURCE
 
-      - name: Add alpha tag
-        if: ${{ github.ref != 'refs/heads/main' }}
-        run: echo "$VERSION-$GITHUB_RUN_NUMBER" >> $VERSION
-        
-      - name: Pack nuget
-        run: nuget pack -OutputDirectory ..\Packages -Properties Configuration=Release;version=$VERSION
-        
-      - name: Publish alpha
-        if: ${{ github.ref != 'refs/heads/main' }}
-        run: nuget push ..\Packages\TeamVelocity.AutoCode -src $NUGETSOURCE
-        
-      - name: Publish finale
-        if: ${{ github.ref == 'refs/heads/main' }}
-        run: nuget push ..\Packages\TeamVelocity.AutoCode -src $NUGETSOURCE
+      - name: Publish AutoCode to Nuget.Org
+        if: success() && github.ref == 'refs/heads/main'
+        uses: brandedoutcast/publish-nuget@v2.5.5
+        with:
+          PROJECT_FILE_PATH: ${{ env.PROJECTPATH }}
+          NUGET_KEY: ${{ secrets.NUGETAPIKEY }}
+          NUGET_SOURCE: ${{ env.NUGETSOURCE }}
+          VERSION_STATIC: ${{ env.VERSION }}
+          VERSION_REGEX: ^\s*<Version>(.*)<\/Version>\s*$
+          INCLUDE_SYMBOLS: true

@@ -1,10 +1,12 @@
-﻿using AutoCodeComment.Rewriter;
+﻿using AutoCode.Rewriter;
+using AutoCode.Rewriter.Comment;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using System;
+using System.Collections.Generic;
 using System.IO;
 
-namespace AutoCodeComment
+namespace AutoCode
 {
     public class Comment
     {
@@ -28,9 +30,13 @@ namespace AutoCodeComment
             var source = CSharpSyntaxTree.ParseText(content)
                                        .WithFilePath(code.FullName);
 
-            var rewriter = new StructuredTriviaRewriter(CommentTemplate);
+            CSharpSyntaxRewriter rewriter = new ConstanteFieldTriviaRewriter(CommentTemplate);
 
             var newSource = rewriter.Visit(source.GetRoot());
+
+            rewriter = new RazorPageClassTriviaRewriter();
+
+            newSource = rewriter.Visit(newSource);
 
             OnCompleted(source, newSource);
         }
@@ -47,7 +53,7 @@ namespace AutoCodeComment
         {
             var source = CSharpSyntaxTree.ParseText(code);
 
-            var rewriter = new StructuredTriviaRewriter(CommentTemplate);
+            var rewriter = new ConstanteFieldTriviaRewriter(CommentTemplate);
 
             var newSource = rewriter.Visit(source.GetRoot());
 
