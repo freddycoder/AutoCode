@@ -46,7 +46,7 @@ jobs:
 
       - name: Publish AutoCode to Nuget.Org
         if: success() && github.ref == 'refs/heads/main'
-        uses: brandedoutcast/publish-nuget@v4
+        uses: brandedoutcast/publish-nuget@v2.5.5
         with:
           PROJECT_FILE_PATH: ${{ env.PROJECTPATH }}
           NUGET_KEY: ${{ secrets.NUGETAPIKEY }}
