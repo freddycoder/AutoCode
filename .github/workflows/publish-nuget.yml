@@ -46,11 +46,5 @@ jobs:
 
       - name: Publish AutoCode to Nuget.Org
         if: success() && github.ref == 'refs/heads/main'
-        uses: brandedoutcast/publish-nuget@v2.5.5
-        with:
-          PROJECT_FILE_PATH: ${{ env.PROJECTPATH }}
-          NUGET_KEY: ${{ secrets.NUGETAPIKEY }}
-          NUGET_SOURCE: ${{ env.NUGETSOURCE }}
-          VERSION_STATIC: ${{ env.VERSION }}
-          VERSION_REGEX: ^\s*<Version>(.*)<\/Version>\s*$
-          INCLUDE_SYMBOLS: true
+        run: |
+          dotnet nuget push ${{ env.PROJECTPATH }} -s ${{ env.NUGETSOURCE }} -k ${{ secrets.NUGET_API_KEY }}
