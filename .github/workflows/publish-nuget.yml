@@ -47,4 +47,4 @@ jobs:
       - name: Publish AutoCode to Nuget.Org
         if: success() && github.ref == 'refs/heads/main'
         run: |
-          dotnet nuget push ${{ env.PROJECTPATH }} -s ${{ env.NUGETSOURCE }} -k ${{ secrets.NUGET_API_KEY }}
+          dotnet nuget push ${{ env.PROJECTPATH }} -s ${{ env.NUGETSOURCE }} -k ${{ secrets.NUGETAPIKEY }}
